@@ -1,37 +1,18 @@
 public class FlourPacker {
-    public static boolean canPack(int bigCount, int smallCount, int goal){
+    public static boolean canPack(int bigCount, int smallCount, int goal) {
+        if ((bigCount < 0) || (smallCount < 0) || (goal < 0)) return false;
 
-        if((bigCount < 0) || (smallCount < 0) ||(goal < 0)||  ((smallCount + (bigCount*5)) < goal)){
-            return false;
-        }
 
-        if((bigCount*5) >= goal){
-            if(((bigCount*5) == goal
+        for (int i = 1; i <= bigCount; i++) {
 
-            int count = 1;
-            while(count < bigCount){
-                if ((smallCount == 0)&&((5*count) > goal)){
-                    return false;
-                }
-                else if(((5*count) + smallCount) >= goal){
-
-                    return true;
-                }
-                else if(((((5*count) + smallCount) >= goal) && ((5*count) <= goal)) || ((smallCount == 0)&&((5*count) == goal))){
-
-                    return true;
-                }
-
-                count++;
-
+            if ((i * 5) == goal) return true;
+            else if ((i * 5) < goal) {
+                if (((i * 5) + smallCount) >= goal) return true;
             }
 
-
         }
-        else if ((((bigCount * 5) + smallCount) >= goal) && ((bigCount * 5) < goal)  ){
 
-            return true;
-        }
+        if (smallCount >= goal) return true;
         return false;
     }
 }
